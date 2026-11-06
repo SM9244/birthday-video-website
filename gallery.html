@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Birthday Photos</title>
+</head>
+
+<body>
+
+    <h1>🎂 Your Birthday Memories</h1>
+    <button id="logoutBtn">Logout</button>
+
+    <div id="photoGallery"></div>
+    <p id="message">Loading your photos...</p>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+
+    <script>
+        async function loadGallery() {
+            const message = document.getElementById("message");
+            const gallery = document.getElementById("photoGallery");
+
+            const { data: { user }, error: authError } =
+                await supabaseClient.auth.getUser();
+
+            if (authError || !user) {
+                window.location.href = "login.html";
+                return;
+            }
+
+            const { data: sites, error: siteError } =
+                await supabaseClient
+                    .from("birthday_sites")
+                    .select("id, recipient_name, birthday_message")
+                    .eq("recipient_user_id", user.id);
+
+            if (siteError || !sites || sites.length === 0) {
+                message.textContent = "No birthday website found.";
+                return;
+            }
+
+            const site = sites[0];
+
+            const { data: photos, error: photoError } =
+                await supabaseClient
+                    .from("birthday_photos")
+                    .select("storage_path")
+                    .eq("site_id", site.id);
+
+            if (photoError) {
+                message.textContent = "Unable to load photos.";
+                return;
+            }
+
+            document.querySelector("h1").textContent =
+                "🎂 " + site.recipient_name + "'s Birthday Memories";
+
+            if (site.birthday_message) {
+                const greeting = document.createElement("p");
+                greeting.textContent = site.birthday_message;
+                gallery.appendChild(greeting);
+            }
+
+            if (!photos || photos.length === 0) {
+                message.textContent = "No photos uploaded yet.";
+                return;
+            }
+
+            for (const photo of photos) {
+                const { data, error } = await supabaseClient
+                    .storage
+                    .from("birthday-photos")
+                    .createSignedUrl(photo.storage_path, 300);
+
+                if (error) {
+                    console.error(error);
+                    continue;
+                }
+
+                const img = document.createElement("img");
+                img.src = data.signedUrl;
+                img.alt = "Private birthday memory";
+                img.style.width = "250px";
+                img.style.margin = "10px";
+                gallery.appendChild(img);
+            }
+
+            message.textContent = "";
+        }
+
+        document.getElementById("logoutBtn").addEventListener("click", async () => {
+            await supabaseClient.auth.signOut();
+            window.location.href = "login.html";
+        });
+
+        loadGallery();
+    </script>
+
+</body>
+
+</html>

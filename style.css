@@ -1,0 +1,624 @@
+
+/* ==========================
+   GLOBAL
+   ========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+
+    /* BMW BACKGROUND */
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.32),
+            rgba(0, 0, 0, 0.32)
+        ),
+        url("birthday-bg.jpg");
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow-x: hidden;
+    padding: 30px 0;
+}
+
+/* ==========================
+   MAIN CONTAINER
+   ========================== */
+
+.container {
+    width: 100%;
+    max-width: 560px;
+    padding: 25px 20px;
+    position: relative;
+    z-index: 5;
+}
+
+/* ==========================
+   BIRTHDAY CARD
+   ========================== */
+
+.card {
+    background: rgba(255, 255, 255, 0.94);
+    padding: 35px 30px;
+    border-radius: 25px;
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.45);
+
+    border: 2px solid rgba(255, 255, 255, 0.75);
+
+    animation: cardAppear 1.2s ease;
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    position: relative;
+}
+
+/* ==========================
+   CAKE
+   ========================== */
+
+.cake {
+    font-size: 70px;
+    margin-bottom: 5px;
+    animation: bounce 2s infinite;
+}
+
+/* ==========================
+   SMALL TEXT
+   ========================== */
+
+.small-text {
+    color: #777;
+    font-size: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* ==========================
+   MAIN HEADING
+   ========================== */
+
+h1 {
+    color: #ff4f81;
+    font-size: 40px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    animation: titleGlow 2s infinite alternate;
+}
+
+/* ==========================
+   SECOND HEADING
+   ========================== */
+
+h3 {
+    color: #8e44ad;
+    margin: 10px 0 20px;
+    font-size: 22px;
+}
+
+/* ==========================
+   BIRTHDAY MESSAGE
+   ========================== */
+
+.message {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 12px 0;
+}
+
+/* ==========================
+   PHOTO GALLERY
+   ========================== */
+
+.photo-section {
+    margin: 35px 0;
+    padding: 20px 10px;
+
+    border-top: 1px solid #f3d5df;
+    border-bottom: 1px solid #f3d5df;
+}
+
+.photo-section h2 {
+    color: #8e44ad;
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+.gallery-description {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.photo-card {
+    overflow: hidden;
+    border-radius: 16px;
+    background: #fff;
+
+    border: 3px solid white;
+
+    box-shadow:
+        0 5px 18px rgba(130, 85, 95, 0.15);
+
+    transition: transform 0.3s ease;
+}
+
+.photo-card:hover {
+    transform: translateY(-4px);
+}
+
+.photo-card img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.photo-card:hover img {
+    transform: scale(1.04);
+}
+
+/* ==========================
+   SURPRISE BUTTON
+   ========================== */
+
+button {
+    border: none;
+
+    background:
+        linear-gradient(
+            45deg,
+            #ff4f81,
+            #ff758c
+        );
+
+    color: white;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+
+    box-shadow:
+        0 8px 20px rgba(255, 79, 129, 0.4);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.06);
+
+    box-shadow:
+        0 10px 25px rgba(255, 79, 129, 0.6);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* ==========================
+   HIDDEN SURPRISE
+   ========================== */
+
+.hidden {
+    display: none;
+}
+
+/* ==========================
+   SURPRISE BOX
+   ========================== */
+
+#surprise {
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 20px;
+
+    background:
+        rgba(255, 240, 245, 0.97);
+
+    border: 2px solid #ffd1df;
+
+    box-shadow:
+        0 8px 25px rgba(255, 79, 129, 0.15);
+
+    animation: surpriseAppear 1s ease;
+}
+
+/* ==========================
+   HEART
+   ========================== */
+
+.heart {
+    font-size: 55px;
+    animation: heartbeat 1s infinite;
+}
+
+/* ==========================
+   SURPRISE HEADING
+   ========================== */
+
+#surprise h2 {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+/* ==========================
+   SURPRISE MESSAGE
+   ========================== */
+
+#surprise p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+/* ==========================
+   FINAL WISH
+   ========================== */
+
+.final-wish {
+    font-weight: bold;
+    color: #ff4f81 !important;
+    margin-top: 15px !important;
+    font-size: 17px !important;
+}
+
+/* ==========================
+   BMW CAR
+   ========================== */
+
+.car {
+    font-size: 65px;
+    margin-bottom: 5px;
+
+    animation:
+        carMove 1.5s ease-in-out infinite alternate;
+}
+
+/* ==========================
+   FOOTER
+   ========================== */
+
+.footer {
+    margin-top: 25px;
+    color: #999;
+    font-size: 14px;
+}
+
+/* ==========================
+   BALLOONS
+   ========================== */
+
+.balloon {
+    position: fixed;
+    font-size: 55px;
+
+    animation:
+        float 5s infinite ease-in-out;
+
+    z-index: 10;
+    pointer-events: none;
+    user-select: none;
+}
+
+.balloon1 {
+    left: 4%;
+    top: 20%;
+}
+
+.balloon2 {
+    right: 5%;
+    top: 15%;
+    animation-delay: 1s;
+}
+
+.balloon3 {
+    left: 8%;
+    bottom: 10%;
+    animation-delay: 2s;
+}
+
+.balloon4 {
+    right: 8%;
+    bottom: 12%;
+    animation-delay: 3s;
+}
+
+/* ==========================
+   ANIMATIONS
+   ========================== */
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes titleGlow {
+    from {
+        text-shadow: 0 0 5px #ff9eb5;
+    }
+
+    to {
+        text-shadow: 0 0 20px #ff4f81;
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-30px) rotate(5deg);
+    }
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes surpriseAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes carMove {
+    from {
+        transform: translateX(-10px);
+    }
+
+    to {
+        transform: translateX(10px);
+    }
+}
+
+/* ==========================
+   DESKTOP LARGE SCREEN
+   ========================== */
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 560px;
+    }
+
+    .card {
+        padding: 35px 30px;
+    }
+}
+
+/* ==========================
+   TABLET
+   ========================== */
+
+@media (max-width: 900px) {
+    body {
+        background-position: center center;
+        background-attachment: scroll;
+    }
+
+    .container {
+        max-width: 570px;
+    }
+}
+
+/* ==========================
+   MOBILE
+   ========================== */
+
+@media (max-width: 600px) {
+    body {
+        background-position: center center;
+        background-attachment: scroll;
+        padding: 20px 0;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px 15px;
+    }
+
+    .card {
+        padding: 30px 20px;
+        border-radius: 22px;
+    }
+
+    h1 {
+        font-size: 38px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .message {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .cake {
+        font-size: 60px;
+    }
+
+    .car {
+        font-size: 55px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 14px 20px;
+        width: 100%;
+    }
+
+    #surprise {
+        padding: 20px 15px;
+    }
+
+    .balloon {
+        font-size: 40px;
+    }
+
+    .balloon1 {
+        left: 1%;
+        top: 12%;
+    }
+
+    .balloon2 {
+        right: 1%;
+        top: 10%;
+    }
+
+    .balloon3 {
+        left: 2%;
+        bottom: 8%;
+    }
+
+    .balloon4 {
+        right: 2%;
+        bottom: 8%;
+    }
+
+    .photo-card img {
+        height: 180px;
+    }
+}
+
+/* ==========================
+   VERY SMALL MOBILE
+   ========================== */
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 21px;
+    }
+
+    .card {
+        padding: 25px 15px;
+    }
+
+    .cake {
+        font-size: 52px;
+    }
+
+    .message {
+        font-size: 15px;
+    }
+
+    .small-text {
+        font-size: 13px;
+    }
+
+    .gallery-container {
+        gap: 10px;
+    }
+
+    .photo-card img {
+        height: 150px;
+    }
+
+
+    /* Birthday Video Download Section */
+.video-download-section {
+    margin-top: 25px;
+    text-align: center;
+}
+
+#downloadVideoBtn {
+    background: linear-gradient(135deg, #ff69b4, #9b59b6);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#downloadVideoBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+#downloadVideoBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#videoStatus {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #6a397b;
+    font-weight: 600;
+}
+}

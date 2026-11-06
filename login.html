@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Welcome | Private Birthday Memories 🎂</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, #fff1f2, #fff8ed, #fce7f3);
+            color: #514047;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            padding: 45px 35px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(198, 160, 110, 0.35);
+            border-radius: 25px;
+            box-shadow: 0 15px 45px rgba(130, 85, 95, 0.13);
+        }
+
+        .cake {
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        .top-label {
+            color: #b18a55;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: #80556a;
+            margin-bottom: 12px;
+        }
+
+        .description {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #887780;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #765c67;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #ead9df;
+            border-radius: 12px;
+            background: #fffafb;
+            outline: none;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        input:focus {
+            border-color: #bd91a7;
+            box-shadow: 0 0 0 3px rgba(189, 145, 167, 0.12);
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 65px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            color: #a4778e;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #bd91a7, #a97991);
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(169, 121, 145, 0.25);
+        }
+
+        .login-button:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #message {
+            min-height: 22px;
+            margin-top: 18px;
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #a18d96;
+        }
+
+        .sparkle {
+            position: fixed;
+            color: #c5a36e;
+            font-size: 25px;
+            opacity: 0.55;
+            pointer-events: none;
+        }
+
+        .sparkle-one {
+            top: 12%;
+            left: 12%;
+        }
+
+        .sparkle-two {
+            bottom: 15%;
+            right: 12%;
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 35px 23px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sparkle sparkle-one">✦</div>
+    <div class="sparkle sparkle-two">✧</div>
+
+    <main class="login-card">
+
+        <div class="top-label">A PRIVATE CELEBRATION</div>
+
+        <div class="cake">🎂</div>
+
+        <h1>Welcome!</h1>
+
+        <p class="description">
+            Someone has created something special just for you.
+            Login to unlock your private birthday memories. ✨
+        </p>
+
+        <form id="loginForm">
+
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" autocomplete="username" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="Enter your password"
+                        autocomplete="current-password" required>
+
+                    <button type="button" class="toggle-password" id="togglePassword">
+                        Show
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" class="login-button" id="loginButton">
+                Unlock My Birthday Website ✨
+            </button>
+
+        </form>
+
+        <p id="message" role="status" aria-live="polite"></p>
+
+        <div class="footer">
+            Made with care, just for you 🤍
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const message = document.getElementById("message");
+        const loginButton = document.getElementById("loginButton");
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        // Show or hide password
+        togglePassword.addEventListener("click", function () {
+            const isPassword = passwordInput.type === "password";
+
+            passwordInput.type = isPassword ? "text" : "password";
+            togglePassword.textContent = isPassword ? "Hide" : "Show";
+        });
+
+        // Customer login
+        loginForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const password = passwordInput.value;
+
+            message.style.color = "#887780";
+            message.textContent = "Checking your details...";
+
+            loginButton.disabled = true;
+            loginButton.textContent = "Please wait...";
+
+            try {
+                const { data, error } =
+                    await supabaseClient.auth.signInWithPassword({
+                        email: email,
+                        password: password
+                    });
+
+                if (error) {
+                    throw error;
+                }
+
+                message.style.color = "#39845b";
+                message.textContent = "Login successful! Opening your birthday website... 🎉";
+
+                window.location.replace("index.html");
+
+            } catch (error) {
+                message.style.color = "#c04b58";
+                message.textContent = "Login failed: " + error.message;
+
+                loginButton.disabled = false;
+                loginButton.textContent = "Unlock My Birthday Website ✨";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

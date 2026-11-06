@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Birthday!!! 🎂</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <div class="card">
+
+            <!-- Background Birthday Music -->
+            <audio id="birthdayMusic" loop preload="auto">
+                <source src="birthday-music.mp3" type="audio/mpeg">
+                Your browser does not support audio.
+            </audio>
+
+            <div class="cake">🎂</div>
+
+            <p class="small-text">
+                A special wish for the one who has always been there for me🙂
+            </p>
+
+            <h1>Happy Birthday, Superstar! 🎂</h1>
+
+            <h3>My Brother, My Best Friend &amp; Always Your Well-Wisher 🤝</h3>
+
+            <p class="message">
+                Thank you for always being there for me!!!
+            </p>
+
+            <p class="message">
+                May your happiness, peace, and joy grow tenfold with every
+                passing year, and may your life always be filled with countless
+                beautiful moments, endless smiles, and lots of love✨
+            </p>
+
+            <p class="message">
+                Keep smiling and always stay the way you are✨
+                <br>
+                <strong>
+                    I’ll always be there for you, through every step of your
+                    journey—to support you, guide you, and cheer for you no
+                    matter what. Your happiness and success will always mean
+                    a lot to me, and I’ll always wish for the very best for you🤍
+                </strong>
+            </p>
+
+            <!-- PRIVATE PHOTO GALLERY -->
+
+            <section class="photo-section">
+
+                <h2>Beautiful Memories 📸</h2>
+
+                <p class="gallery-description">
+                    Every picture holds a special little story. 🤍
+                </p>
+
+                <div class="gallery-container" id="photoGallery">
+                    Loading your birthday memories...
+                </div>
+
+            </section>
+
+            <!-- Birthday Video Download -->
+            <div class="video-download-section">
+
+                <button id="downloadVideoBtn" type="button">
+                    🎬 Download Birthday Memories
+                </button>
+
+                <p id="videoStatus"></p>
+
+            </div>
+
+            <!-- Birthday Surprise Button -->
+            <button id="surpriseBtn" type="button">
+                Okay, one last birthday gyaan for you!🤭
+                <br>
+                Don't laugh before clicking... 😜
+            </button>
+
+            <!-- Hidden Birthday Surprise -->
+            <div id="surprise" class="hidden">
+
+                <div class="car">🚘</div>
+
+                <h2>A Little Dream, A Big Smile!❤️</h2>
+
+                <p>
+                    Dear Superstar! 🥹
+                </p>
+
+                <p>
+                    I know you have your own dreams, plans, and a thousand
+                    things going on in your mind. I may tease you, irritate you,
+                    but deep down, I always want
+                    to see you happy🤗
+                </p>
+
+                <p>
+                    By the way, I'm still confused... 🧐
+                    <br>
+                    When and why did your dream BMW become a FORTUNER? 😂🚘
+                    <br>
+                    <strong>
+                        Anyway, whatever the car is, Dingi's first ride is reserved! 😎🤍
+                    </strong>
+                </p>
+
+                <p>
+                    No birthday gift can explain how much I wish good things
+                    for you. May life give you countless reasons to smile,
+                    beautiful surprises, and memories you'll cherish forever. ✨
+                </p>
+
+                <p>
+                    Whatever changes in life, one thing is certain:
+                    <strong>
+                        You'll always have your Dingi cheering for you!🤍
+                    </strong>
+                </p>
+
+                <p class="final-wish">
+                    Happy Birthday once again! 🎂🥳
+                    <br>
+                    Now hurry up and become rich...
+                    <br>
+                    Your passenger is waiting! 😂
+                    <br><br>
+                    From your forever Dingi 😛
+                </p>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <strong>Made with extra excitement, just for you!🤗</strong>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- SUPABASE & JAVASCRIPT -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase.js"></script>
+
+    <script>
+        // Protect the complete birthday page.
+        // Only authenticated customers can continue.
+
+        async function checkCustomerLogin() {
+
+            try {
+                const { data, error } =
+                    await supabaseClient.auth.getUser();
+
+                if (error || !data.user) {
+                    window.location.replace("login.html");
+                    return;
+                }
+
+                // Show the page after login is verified.
+                document.body.style.visibility = "visible";
+
+            } catch (error) {
+                console.error("Login verification failed:", error);
+                window.location.replace("login.html");
+            }
+        }
+
+        // Hide page content until login is checked.
+        document.body.style.visibility = "hidden";
+
+        checkCustomerLogin();
+    </script>
+
+    <script src="script.js"></script>
+
+    <script type="module" src="birthday-gallery.js"></script>
+
+</body>
+
+</html>
