@@ -172,6 +172,10 @@ async function loadBirthdayBackground() {
 // 4. LOAD AND LOOP MUSIC
 // --------------------------------------------------
 
+// --------------------------------------------------
+// 4. LOAD AND LOOP MUSIC
+// --------------------------------------------------
+
 async function loadBirthdayMusic(duration) {
   const response = await fetch(`${import.meta.env.BASE_URL}birthday-music.mp3`);
 
