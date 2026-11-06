@@ -19,6 +19,12 @@ let birthdaySite = null;
 let birthdayPhotos = [];
 
 // --------------------------------------------------
+// SUPABASE CLIENT
+// --------------------------------------------------
+
+const supabaseClient = window.supabaseClient;
+
+// --------------------------------------------------
 // 1. LOAD PRIVATE BIRTHDAY PHOTOS
 // --------------------------------------------------
 
@@ -29,12 +35,20 @@ async function loadBirthdayPhotos() {
 
   gallery.textContent = "Loading your birthday memories... 📸";
 
+  if (!supabaseClient) {
+    gallery.textContent =
+      "Supabase client could not be loaded. Please refresh.";
+
+    console.error("window.supabaseClient is not available.");
+    return;
+  }
+
   try {
     const { data: userData, error: userError } =
       await supabaseClient.auth.getUser();
 
     if (userError || !userData.user) {
-      window.location.replace("login.html");
+      window.location.replace("./login.html");
       return;
     }
 
@@ -96,6 +110,7 @@ async function loadBirthdayPhotos() {
     }
   } catch (error) {
     console.error("Birthday gallery error:", error);
+
     gallery.textContent = "Unable to load photos. Please try logging in again.";
   }
 }
@@ -269,6 +284,7 @@ function drawPhoto(ctx, image) {
   // White background behind the complete photo.
   ctx.shadowBlur = 0;
   ctx.fillStyle = "#ffffff";
+
   ctx.beginPath();
   ctx.roundRect(x, y, width, height, 14);
   ctx.fill();
@@ -443,6 +459,7 @@ function drawTextScene(ctx, scene) {
 
   // Main translucent text panel.
   ctx.fillStyle = "rgba(0,0,0,0.58)";
+
   ctx.beginPath();
   ctx.roundRect(65, 55, VIDEO_WIDTH - 130, VIDEO_HEIGHT - 110, 28);
   ctx.fill();
@@ -495,7 +512,7 @@ function drawTextScene(ctx, scene) {
       const lines = wrapText(ctx, paragraph, maxWidth);
 
       allLines.push(...lines);
-      allLines.push(""); // Paragraph spacing.
+      allLines.push("");
     }
 
     const totalHeight = allLines.length * lineHeight;
@@ -536,6 +553,7 @@ function drawScene(ctx, scene, backgroundImage, images) {
     }
 
     ctx.save();
+
     ctx.fillStyle = "rgba(0,0,0,0.75)";
     ctx.fillRect(0, 625, VIDEO_WIDTH, 95);
 
@@ -543,6 +561,7 @@ function drawScene(ctx, scene, backgroundImage, images) {
     ctx.textBaseline = "middle";
     ctx.fillStyle = "#ffffff";
     ctx.font = "bold 29px Georgia";
+
     ctx.fillText(scene.title, VIDEO_WIDTH / 2, 672);
 
     ctx.restore();
@@ -550,7 +569,7 @@ function drawScene(ctx, scene, backgroundImage, images) {
     drawTextScene(ctx, scene);
   }
 
-  // SM29 Creations watermark
+  // SM29 WebCreations watermark.
   ctx.save();
 
   ctx.font = "bold 19px Georgia";
@@ -731,7 +750,9 @@ async function downloadBirthdayVideo() {
       throw new Error("The MP4 file could not be created.");
     }
 
-    const videoBlob = new Blob([videoBuffer], { type: "video/mp4" });
+    const videoBlob = new Blob([videoBuffer], {
+      type: "video/mp4",
+    });
 
     const downloadUrl = URL.createObjectURL(videoBlob);
 
@@ -781,5 +802,8 @@ if (downloadButton) {
   downloadButton.addEventListener("click", downloadBirthdayVideo);
 }
 
-// Load private birthday photos.
+// --------------------------------------------------
+// 11. LOAD PRIVATE BIRTHDAY PHOTOS
+// --------------------------------------------------
+
 loadBirthdayPhotos();

@@ -240,7 +240,7 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase.js"></script>
+    <script src="./supabase.js"></script>
 
     <script>
         const loginForm = document.getElementById("loginForm");
@@ -271,8 +271,14 @@
             loginButton.textContent = "Please wait...";
 
             try {
+                if (!window.supabaseClient) {
+                    throw new Error(
+                        "Supabase client not loaded. Please refresh the page."
+                    );
+                }
+
                 const { data, error } =
-                    await supabaseClient.auth.signInWithPassword({
+                    await window.supabaseClient.auth.signInWithPassword({
                         email: email,
                         password: password
                     });
@@ -282,11 +288,14 @@
                 }
 
                 message.style.color = "#39845b";
-                message.textContent = "Login successful! Opening your birthday website... 🎉";
+                message.textContent =
+                    "Login successful! Opening your birthday website... 🎉";
 
-                window.location.replace("index.html");
+                window.location.replace("./index.html");
 
             } catch (error) {
+                console.error("Login error:", error);
+
                 message.style.color = "#c04b58";
                 message.textContent = "Login failed: " + error.message;
 

@@ -7,7 +7,13 @@
 
     <title>Happy Birthday!!! 🎂</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+        body {
+            visibility: hidden;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,7 +24,7 @@
 
             <!-- Background Birthday Music -->
             <audio id="birthdayMusic" loop preload="auto">
-                <source src="birthday-music.mp3" type="audio/mpeg">
+                <source src="./birthday-music.mp3" type="audio/mpeg">
                 Your browser does not support audio.
             </audio>
 
@@ -54,7 +60,6 @@
             </p>
 
             <!-- PRIVATE PHOTO GALLERY -->
-
             <section class="photo-section">
 
                 <h2>Beautiful Memories 📸</h2>
@@ -94,9 +99,7 @@
 
                 <h2>A Little Dream, A Big Smile!❤️</h2>
 
-                <p>
-                    Dear Superstar! 🥹
-                </p>
+                <p>Dear Superstar! 🥹</p>
 
                 <p>
                     I know you have your own dreams, plans, and a thousand
@@ -153,7 +156,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <script src="supabase.js"></script>
+    <script src="./supabase.js"></script>
 
     <script>
         // Protect the complete birthday page.
@@ -162,11 +165,16 @@
         async function checkCustomerLogin() {
 
             try {
+
+                if (!window.supabaseClient) {
+                    throw new Error("Supabase client not loaded.");
+                }
+
                 const { data, error } =
-                    await supabaseClient.auth.getUser();
+                    await window.supabaseClient.auth.getUser();
 
                 if (error || !data.user) {
-                    window.location.replace("login.html");
+                    window.location.replace("./login.html");
                     return;
                 }
 
@@ -174,20 +182,21 @@
                 document.body.style.visibility = "visible";
 
             } catch (error) {
+
                 console.error("Login verification failed:", error);
-                window.location.replace("login.html");
+
+                window.location.replace("./login.html");
             }
         }
 
-        // Hide page content until login is checked.
-        document.body.style.visibility = "hidden";
-
+        // Check login before displaying birthday content.
         checkCustomerLogin();
+
     </script>
 
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 
-    <script type="module" src="birthday-gallery.js"></script>
+    <script type="module" src="./birthday-gallery.js"></script>
 
 </body>
 
