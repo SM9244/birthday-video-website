@@ -15,6 +15,7 @@ export default defineConfig({
         index: resolve(process.cwd(), "index.html"),
         login: resolve(process.cwd(), "login.html"),
         gallery: resolve(process.cwd(), "gallery.html"),
+        surprise: resolve(process.cwd(), "surprise.html"),
       },
     },
   },

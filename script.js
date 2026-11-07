@@ -1,36 +1,9 @@
-const surpriseBtn = document.getElementById("surpriseBtn");
-const surprise = document.getElementById("surprise");
 const birthdayMusic = document.getElementById("birthdayMusic");
 
-// Set birthday music volume
-birthdayMusic.volume = 0.5;
-
-// Show the birthday surprise and play music after clicking
-surpriseBtn.addEventListener("click", function () {
-  // Reveal the special birthday message
-  surprise.classList.remove("hidden");
-
-  // Hide the surprise button
-  surpriseBtn.style.display = "none";
-
-  // Start the birthday song from the beginning
-  birthdayMusic.currentTime = 0;
-
-  birthdayMusic.play().catch((error) => {
-    console.log("Unable to play birthday music:", error);
-  });
-
-  // Launch birthday confetti
-  createConfetti();
-
-  // Smoothly scroll to the surprise message
-  setTimeout(() => {
-    surprise.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-  }, 100);
-});
+// Set birthday music volume, if the audio element exists
+if (birthdayMusic) {
+  birthdayMusic.volume = 0.5;
+}
 
 // Birthday confetti animation
 function createConfetti() {
