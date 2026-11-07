@@ -1,38 +1,46 @@
-const surpriseBtn = document.getElementById("surpriseBtn");
-const surprise = document.getElementById("surprise");
+// ==========================================
+// BIRTHDAY MUSIC AND SURPRISE EFFECTS
+// ==========================================
+
 const birthdayMusic = document.getElementById("birthdayMusic");
+const playMusicBtn = document.getElementById("playMusicBtn");
 
-// Set birthday music volume
-birthdayMusic.volume = 0.5;
+let surpriseEffectsStarted = false;
 
-// Show the birthday surprise and play music after clicking
-surpriseBtn.addEventListener("click", function () {
-  // Reveal the special birthday message
-  surprise.classList.remove("hidden");
+// ==========================================
+// SET BIRTHDAY MUSIC VOLUME
+// ==========================================
 
-  // Hide the surprise button
-  surpriseBtn.style.display = "none";
+if (birthdayMusic) {
+  birthdayMusic.volume = 0.5;
+}
 
-  // Start the birthday song from the beginning
-  birthdayMusic.currentTime = 0;
+// ==========================================
+// PLAY BIRTHDAY MUSIC
+// ==========================================
 
-  birthdayMusic.play().catch((error) => {
-    console.log("Unable to play birthday music:", error);
-  });
+async function playBirthdayMusic() {
+  if (!birthdayMusic) return;
 
-  // Launch birthday confetti
-  createConfetti();
+  try {
+    await birthdayMusic.play();
 
-  // Smoothly scroll to the surprise message
-  setTimeout(() => {
-    surprise.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-  }, 100);
-});
+    if (playMusicBtn) {
+      playMusicBtn.hidden = true;
+    }
+  } catch (error) {
+    console.log("Automatic music playback was blocked by the browser:", error);
 
-// Birthday confetti animation
+    if (playMusicBtn) {
+      playMusicBtn.hidden = false;
+    }
+  }
+}
+
+// ==========================================
+// FALLING BIRTHDAY EMOJIS AND FLOWERS
+// ==========================================
+
 function createConfetti() {
   const emojis = ["🎉", "🎊", "🪻", "🤗", "✨", "🎈", "🥳", "🤍", "🚘", "🎂"];
 
@@ -46,7 +54,9 @@ function createConfetti() {
     confetti.style.position = "fixed";
     confetti.style.left = Math.random() * 100 + "vw";
     confetti.style.top = "-40px";
+
     confetti.style.fontSize = Math.random() * 18 + 16 + "px";
+
     confetti.style.zIndex = "9999";
     confetti.style.pointerEvents = "none";
     confetti.style.userSelect = "none";
@@ -79,4 +89,53 @@ function createConfetti() {
       confetti.remove();
     };
   }
+}
+
+// ==========================================
+// START SURPRISE PAGE EFFECTS AFTER LOGIN
+// ==========================================
+
+window.startSurpriseEffects = function () {
+  // Prevent duplicate animations
+  if (surpriseEffectsStarted) return;
+
+  // Run effects only on surprise.html
+  if (document.body.dataset.page !== "surprise") return;
+
+  surpriseEffectsStarted = true;
+
+  console.log("Starting birthday surprise effects!");
+
+  // Start falling birthday emojis
+  createConfetti();
+
+  // Attempt to play birthday music
+  playBirthdayMusic();
+};
+
+// ==========================================
+// LISTEN FOR SUCCESSFUL SUPABASE AUTHENTICATION
+// ==========================================
+
+document.addEventListener(
+  "birthday-authenticated",
+  window.startSurpriseEffects
+);
+
+// ==========================================
+// HANDLE AUTHENTICATION BEFORE SCRIPT LOAD
+// ==========================================
+
+if (document.body.dataset.authenticated === "true") {
+  window.startSurpriseEffects();
+}
+
+// ==========================================
+// MANUAL MUSIC BUTTON
+// ==========================================
+
+if (playMusicBtn) {
+  playMusicBtn.addEventListener("click", () => {
+    playBirthdayMusic();
+  });
 }

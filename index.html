@@ -16,17 +16,10 @@
     </style>
 </head>
 
-<body>
+<body data-page="birthday">
 
     <main class="container">
-
         <div class="card">
-
-            <!-- Background Birthday Music -->
-            <audio id="birthdayMusic" loop preload="auto">
-                <source src="./birthday-music.mp3" type="audio/mpeg">
-                Your browser does not support audio.
-            </audio>
 
             <div class="cake">🎂</div>
 
@@ -100,13 +93,10 @@
             </div>
 
         </div>
-
     </main>
 
-    <!-- SUPABASE & JAVASCRIPT -->
-
+    <!-- SUPABASE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <script src="./supabase.js"></script>
 
     <script>
@@ -114,9 +104,7 @@
         // Only authenticated customers can continue.
 
         async function checkCustomerLogin() {
-
             try {
-
                 if (!window.supabaseClient) {
                     throw new Error("Supabase client not loaded.");
                 }
@@ -129,13 +117,15 @@
                     return;
                 }
 
-                // Show the page after login is verified.
+                document.body.dataset.authenticated = "true";
                 document.body.style.visibility = "visible";
 
+                document.dispatchEvent(
+                    new Event("birthday-authenticated")
+                );
+
             } catch (error) {
-
                 console.error("Login verification failed:", error);
-
                 window.location.replace("./login.html");
             }
         }
@@ -143,8 +133,10 @@
         checkCustomerLogin();
     </script>
 
+    <!-- GENERAL JAVASCRIPT -->
     <script src="./script.js"></script>
 
+    <!-- BIRTHDAY GALLERY AND VIDEO -->
     <script type="module" src="./birthday-gallery.js"></script>
 
 </body>

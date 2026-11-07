@@ -5,39 +5,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>One Last Birthday Surprise! 🎁</title>
-
-    <link rel="stylesheet" href="./style.css">
+    <title>A Little Dream, A Big Smile! ❤️</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
         rel="stylesheet">
 
     <style>
-        body {
-            visibility: hidden;
+        * {
+            box-sizing: border-box;
         }
 
-        .surprise-page {
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 35px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(circle at top left, #fff0f5, transparent 40%),
+                linear-gradient(135deg, #ffe4ec, #fff6e9, #fce8f0);
+            font-family: "DM Sans", sans-serif;
+            color: #51404a;
+            visibility: hidden;
+            overflow-x: hidden;
+        }
+
+        .surprise-container {
             width: 100%;
-            max-width: 750px;
-            margin: 40px auto;
-            padding: 20px;
+            max-width: 760px;
+            position: relative;
+            z-index: 2;
         }
 
         .surprise-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
-            padding: 40px 35px;
+            padding: 45px 35px;
             text-align: center;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
-            animation: surpriseAppear 0.8s ease;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 28px;
+            box-shadow: 0 15px 50px rgba(145, 80, 105, 0.15);
+            animation: cardAppear 1s ease;
         }
 
-        @keyframes surpriseAppear {
+        @keyframes cardAppear {
             from {
                 opacity: 0;
                 transform: translateY(25px);
@@ -50,8 +65,8 @@
         }
 
         .car {
-            font-size: 75px;
-            margin-bottom: 15px;
+            font-size: 65px;
+            margin-bottom: 12px;
             animation: carFloat 3s ease-in-out infinite;
         }
 
@@ -63,169 +78,185 @@
             }
 
             50% {
-                transform: translateY(-10px);
+                transform: translateY(-12px);
             }
         }
 
-        .surprise-card h1 {
-            font-family: 'Playfair Display', serif;
-            color: #80556a;
-            font-size: 34px;
+        h1 {
+            font-family: "Playfair Display", serif;
+            color: #a94d70;
+            font-size: clamp(30px, 6vw, 43px);
+            margin: 10px 0 30px;
+        }
+
+        h2 {
+            font-family: "Playfair Display", serif;
+            color: #a94d70;
+            font-size: 27px;
             margin-bottom: 25px;
         }
 
-        .surprise-card h2 {
-            color: #a97991;
-            font-size: 25px;
-            margin: 25px 0;
-        }
-
-        .surprise-card p {
-            color: #66545d;
+        .surprise-message p {
             font-size: 16px;
             line-height: 1.9;
-            margin-bottom: 20px;
+            margin: 20px 0;
         }
 
-        .surprise-card strong {
-            color: #94647b;
+        .surprise-message strong {
+            color: #a34d70;
         }
 
         .final-wish {
-            background: linear-gradient(135deg, #fff1f2, #fff8ed);
+            margin-top: 35px !important;
+            padding: 22px;
             border-radius: 18px;
-            padding: 25px 15px;
-            margin-top: 30px;
-            font-size: 17px !important;
+            background: linear-gradient(135deg, #fff0f5, #fff8eb);
+            color: #a34d70;
+            font-weight: 600;
+        }
+
+        .music-button,
+        .back-button {
+            border: none;
+            border-radius: 30px;
+            padding: 13px 25px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #d8799c, #b95b80);
+            color: white;
+            font-family: "DM Sans", sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .music-button:hover,
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 18px rgba(185, 91, 128, 0.25);
         }
 
         .back-button {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 14px 28px;
-            border: none;
-            border-radius: 30px;
-            background: linear-gradient(135deg, #bd91a7, #a97991);
-            color: white;
-            font-size: 15px;
-            font-weight: 700;
-            text-decoration: none;
-            cursor: pointer;
-            transition: 0.3s;
+            background: linear-gradient(135deg, #c79a52, #ad7b37);
         }
 
-        .back-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(169, 121, 145, 0.25);
-        }
-
-        .surprise-footer {
+        .footer {
             margin-top: 30px;
-            color: #a18d96;
             font-size: 13px;
+            color: #987887;
         }
 
         @media (max-width: 600px) {
-            .surprise-page {
-                margin: 20px auto;
-                padding: 12px;
-            }
-
             .surprise-card {
-                padding: 30px 20px;
+                padding: 35px 20px;
             }
 
-            .surprise-card h1 {
-                font-size: 28px;
+            .surprise-message p {
+                font-size: 15px;
             }
+        }
 
-            .surprise-card h2 {
-                font-size: 22px;
-            }
+        @media (prefers-reduced-motion: reduce) {
 
-            .surprise-card p {
-                font-size: 14px;
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
             }
         }
     </style>
 </head>
 
-<body>
+<body data-page="surprise">
 
-    <main class="surprise-page">
+    <!-- Birthday music -->
+    <audio id="birthdayMusic" loop preload="auto">
+        <source src="./birthday-music.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+    </audio>
+
+    <main class="surprise-container">
 
         <div class="surprise-card">
 
             <div class="car">🚘</div>
 
-            <h1>One Last Birthday Surprise! 🎁</h1>
+            <h1>A Little Dream, A Big Smile! ❤️</h1>
 
-            <h2>A Little Dream, A Big Smile! ❤️</h2>
+            <section class="surprise-message">
 
-            <p>Dear Superstar! 🥹</p>
+                <p>Dear Superstar! 🥹</p>
 
-            <p>
-                I know you have your own dreams, plans, and a thousand
-                things going on in your mind. I may tease you, irritate you,
-                but deep down, I always want
-                to see you happy🤗
-            </p>
+                <p>
+                    I know you have your own dreams, plans, and a thousand
+                    things going on in your mind. I may tease you, irritate you,
+                    but deep down, I always want
+                    to see you happy🤗
+                </p>
 
-            <p>
-                By the way, I'm still confused... 🧐
-                <br>
-                When and why did your dream BMW become a FORTUNER? 😂🚘
-                <br>
-                <strong>
-                    Anyway, whatever the car is, Dingi's first ride is reserved! 😎🤍
-                </strong>
-            </p>
+                <p>
+                    By the way, I'm still confused... 🧐
+                    <br>
+                    When and why did your dream BMW become a FORTUNER? 😂🚘
+                    <br>
+                    <strong>
+                        Anyway, whatever the car is, Dingi's first ride is reserved! 😎🤍
+                    </strong>
+                </p>
 
-            <p>
-                No birthday gift can explain how much I wish good things
-                for you. May life give you countless reasons to smile,
-                beautiful surprises, and memories you'll cherish forever. ✨
-            </p>
+                <p>
+                    No birthday gift can explain how much I wish good things
+                    for you. May life give you countless reasons to smile,
+                    beautiful surprises, and memories you'll cherish forever. ✨
+                </p>
 
-            <p>
-                Whatever changes in life, one thing is certain:
-                <strong>
-                    You'll always have your Dingi cheering for you!🤍
-                </strong>
-            </p>
+                <p>
+                    Whatever changes in life, one thing is certain:
+                    <strong>
+                        You'll always have your Dingi cheering for you!🤍
+                    </strong>
+                </p>
 
-            <p class="final-wish">
-                Happy Birthday once again! 🎂🥳
-                <br>
-                Now hurry up and become rich...
-                <br>
-                Your passenger is waiting! 😂
-                <br><br>
-                From your forever Dingi 😛
-            </p>
+                <p class="final-wish">
+                    Happy Birthday once again! 🎂🥳
+                    <br>
+                    Now hurry up and become rich...
+                    <br>
+                    Your passenger is waiting! 😂
+                    <br><br>
+                    From your forever Dingi 😛
+                </p>
 
-            <a href="./index.html" class="back-button">
+            </section>
+
+            <!-- Appears if automatic music playback is blocked -->
+            <button id="playMusicBtn" class="music-button" type="button" hidden>
+                🎵 Play Birthday Music
+            </button>
+
+            <!-- Return to birthday page -->
+            <button class="back-button" type="button" onclick="window.location.href='./index.html'">
                 ← Back to Birthday Memories
-            </a>
+            </button>
 
-            <div class="surprise-footer">
-                <strong>Made with extra excitement, just for you!🤗</strong>
+            <div class="footer">
+                Made with extra excitement, just for you! 🤗
             </div>
 
         </div>
 
     </main>
 
-    <!-- Supabase authentication -->
-
+    <!-- SUPABASE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./supabase.js"></script>
 
+    <!-- AUTHENTICATION -->
     <script>
         async function checkCustomerLogin() {
-
             try {
-
                 if (!window.supabaseClient) {
                     throw new Error("Supabase client not loaded.");
                 }
@@ -238,18 +269,31 @@
                     return;
                 }
 
+                // Show the page only after successful authentication.
+                document.body.dataset.authenticated = "true";
                 document.body.style.visibility = "visible";
 
+                // Notify the birthday effects script.
+                document.dispatchEvent(
+                    new Event("birthday-authenticated")
+                );
+
+                // Explicitly start effects if the function is available.
+                if (typeof window.startSurpriseEffects === "function") {
+                    window.startSurpriseEffects();
+                }
+
             } catch (error) {
-
                 console.error("Login verification failed:", error);
-
                 window.location.replace("./login.html");
             }
         }
 
         checkCustomerLogin();
     </script>
+
+    <!-- MUSIC AND CONFETTI -->
+    <script src="./script.js"></script>
 
 </body>
 
