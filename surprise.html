@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>One Last Birthday Surprise! 🎁</title>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            visibility: hidden;
+        }
+
+        .surprise-page {
+            width: 100%;
+            max-width: 750px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .surprise-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px 35px;
+            text-align: center;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+            animation: surpriseAppear 0.8s ease;
+        }
+
+        @keyframes surpriseAppear {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .car {
+            font-size: 75px;
+            margin-bottom: 15px;
+            animation: carFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes carFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .surprise-card h1 {
+            font-family: 'Playfair Display', serif;
+            color: #80556a;
+            font-size: 34px;
+            margin-bottom: 25px;
+        }
+
+        .surprise-card h2 {
+            color: #a97991;
+            font-size: 25px;
+            margin: 25px 0;
+        }
+
+        .surprise-card p {
+            color: #66545d;
+            font-size: 16px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .surprise-card strong {
+            color: #94647b;
+        }
+
+        .final-wish {
+            background: linear-gradient(135deg, #fff1f2, #fff8ed);
+            border-radius: 18px;
+            padding: 25px 15px;
+            margin-top: 30px;
+            font-size: 17px !important;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #bd91a7, #a97991);
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(169, 121, 145, 0.25);
+        }
+
+        .surprise-footer {
+            margin-top: 30px;
+            color: #a18d96;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .surprise-page {
+                margin: 20px auto;
+                padding: 12px;
+            }
+
+            .surprise-card {
+                padding: 30px 20px;
+            }
+
+            .surprise-card h1 {
+                font-size: 28px;
+            }
+
+            .surprise-card h2 {
+                font-size: 22px;
+            }
+
+            .surprise-card p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="surprise-page">
+
+        <div class="surprise-card">
+
+            <div class="car">🚘</div>
+
+            <h1>One Last Birthday Surprise! 🎁</h1>
+
+            <h2>A Little Dream, A Big Smile! ❤️</h2>
+
+            <p>Dear Superstar! 🥹</p>
+
+            <p>
+                I know you have your own dreams, plans, and a thousand
+                things going on in your mind. I may tease you, irritate you,
+                but deep down, I always want
+                to see you happy🤗
+            </p>
+
+            <p>
+                By the way, I'm still confused... 🧐
+                <br>
+                When and why did your dream BMW become a FORTUNER? 😂🚘
+                <br>
+                <strong>
+                    Anyway, whatever the car is, Dingi's first ride is reserved! 😎🤍
+                </strong>
+            </p>
+
+            <p>
+                No birthday gift can explain how much I wish good things
+                for you. May life give you countless reasons to smile,
+                beautiful surprises, and memories you'll cherish forever. ✨
+            </p>
+
+            <p>
+                Whatever changes in life, one thing is certain:
+                <strong>
+                    You'll always have your Dingi cheering for you!🤍
+                </strong>
+            </p>
+
+            <p class="final-wish">
+                Happy Birthday once again! 🎂🥳
+                <br>
+                Now hurry up and become rich...
+                <br>
+                Your passenger is waiting! 😂
+                <br><br>
+                From your forever Dingi 😛
+            </p>
+
+            <a href="./index.html" class="back-button">
+                ← Back to Birthday Memories
+            </a>
+
+            <div class="surprise-footer">
+                <strong>Made with extra excitement, just for you!🤗</strong>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Supabase authentication -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./supabase.js"></script>
+
+    <script>
+        async function checkCustomerLogin() {
+
+            try {
+
+                if (!window.supabaseClient) {
+                    throw new Error("Supabase client not loaded.");
+                }
+
+                const { data, error } =
+                    await window.supabaseClient.auth.getUser();
+
+                if (error || !data.user) {
+                    window.location.replace("./login.html");
+                    return;
+                }
+
+                document.body.style.visibility = "visible";
+
+            } catch (error) {
+
+                console.error("Login verification failed:", error);
+
+                window.location.replace("./login.html");
+            }
+        }
+
+        checkCustomerLogin();
+    </script>
+
+</body>
+
+</html>

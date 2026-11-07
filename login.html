@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Welcome | Private Birthday Memories 🎂</title>
+    <title>A Little Surprise 🎁 | Birthday Memories</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,49 +25,157 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 25px 15px;
             font-family: 'DM Sans', sans-serif;
-            background: linear-gradient(135deg, #fff1f2, #fff8ed, #fce7f3);
+            background:
+                radial-gradient(circle at 15% 20%, #ffffff 0, transparent 30%),
+                radial-gradient(circle at 85% 80%, #f8dce5 0, transparent 35%),
+                linear-gradient(135deg, #fff1f2, #fff8ed, #fce7f3);
             color: #514047;
+            overflow-x: hidden;
         }
+
+        /* Login card */
 
         .login-card {
             width: 100%;
-            max-width: 420px;
-            padding: 45px 35px;
+            max-width: 430px;
+            padding: 38px 35px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.91);
             border: 1px solid rgba(198, 160, 110, 0.35);
-            border-radius: 25px;
-            box-shadow: 0 15px 45px rgba(130, 85, 95, 0.13);
-        }
-
-        .cake {
-            font-size: 65px;
-            margin-bottom: 15px;
+            border-radius: 28px;
+            box-shadow: 0 20px 60px rgba(130, 85, 95, 0.15);
+            position: relative;
+            z-index: 2;
         }
 
         .top-label {
             color: #b18a55;
             font-size: 11px;
             font-weight: 700;
-            letter-spacing: 3px;
+            letter-spacing: 2.8px;
+            margin-bottom: 12px;
+        }
+
+        /* Gift box illustration */
+
+        .gift-container {
+            height: 145px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-bottom: 15px;
         }
 
+        .gift {
+            width: 115px;
+            height: 95px;
+            position: relative;
+            margin-top: 30px;
+            animation: giftFloat 3s ease-in-out infinite;
+        }
+
+        .gift-box {
+            position: absolute;
+            bottom: 0;
+            width: 115px;
+            height: 72px;
+            background: linear-gradient(135deg, #d99bb1, #b97996);
+            border-radius: 5px 5px 12px 12px;
+            box-shadow: 0 12px 22px rgba(169, 121, 145, 0.25);
+        }
+
+        .gift-box::before {
+            content: "";
+            position: absolute;
+            left: 47px;
+            width: 21px;
+            height: 100%;
+            background: #f7dfb1;
+        }
+
+        .gift-lid {
+            position: absolute;
+            top: 10px;
+            left: -7px;
+            width: 129px;
+            height: 22px;
+            background: linear-gradient(135deg, #e9b8ca, #c98da7);
+            border-radius: 6px;
+            z-index: 2;
+        }
+
+        .gift-lid::before {
+            content: "";
+            position: absolute;
+            left: 54px;
+            width: 21px;
+            height: 22px;
+            background: #f7dfb1;
+        }
+
+        .ribbon-left,
+        .ribbon-right {
+            position: absolute;
+            top: -19px;
+            width: 34px;
+            height: 27px;
+            border: 7px solid #c28b51;
+            border-radius: 50% 50% 10% 50%;
+            z-index: 3;
+        }
+
+        .ribbon-left {
+            left: 30px;
+            transform: rotate(25deg);
+        }
+
+        .ribbon-right {
+            right: 30px;
+            transform: scaleX(-1) rotate(25deg);
+        }
+
+        .gift-bow-center {
+            position: absolute;
+            top: 4px;
+            left: 51px;
+            width: 14px;
+            height: 17px;
+            background: #b78348;
+            border-radius: 50%;
+            z-index: 4;
+        }
+
+        @keyframes giftFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-9px) rotate(2deg);
+            }
+        }
+
+        /* Heading and description */
+
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 32px;
+            font-size: 34px;
             color: #80556a;
             margin-bottom: 12px;
         }
 
         .description {
             font-size: 14px;
-            line-height: 1.7;
+            line-height: 1.8;
             color: #887780;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
         }
+
+        /* Form fields */
 
         .input-group {
             text-align: left;
@@ -91,6 +199,7 @@
             outline: none;
             font-size: 14px;
             font-family: inherit;
+            transition: 0.25s;
         }
 
         input:focus {
@@ -119,6 +228,8 @@
             cursor: pointer;
         }
 
+        /* Login button */
+
         .login-button {
             width: 100%;
             padding: 15px;
@@ -131,11 +242,12 @@
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
+            box-shadow: 0 7px 18px rgba(169, 121, 145, 0.18);
         }
 
         .login-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(169, 121, 145, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 23px rgba(169, 121, 145, 0.3);
         }
 
         .login-button:disabled {
@@ -152,36 +264,124 @@
         }
 
         .footer {
-            margin-top: 25px;
+            margin-top: 23px;
             font-size: 12px;
             color: #a18d96;
         }
 
-        .sparkle {
+        /* Background sparkle layers */
+
+        #sparkleContainer,
+        #fallingSparkleContainer {
             position: fixed;
-            color: #c5a36e;
-            font-size: 25px;
-            opacity: 0.55;
+            inset: 0;
+            overflow: hidden;
             pointer-events: none;
         }
 
-        .sparkle-one {
-            top: 12%;
-            left: 12%;
+        #sparkleContainer {
+            z-index: 1;
         }
 
-        .sparkle-two {
-            bottom: 15%;
-            right: 12%;
+        #fallingSparkleContainer {
+            z-index: 1;
         }
+
+        /* Twinkling stars */
+
+        .sparkle {
+            position: absolute;
+            color: #c5a36e;
+            pointer-events: none;
+            opacity: 0;
+            animation: sparkle 3s ease-in-out infinite;
+            text-shadow: 0 0 8px rgba(197, 163, 110, 0.4);
+            will-change: transform, opacity;
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                opacity: 0.08;
+                transform: scale(0.5) rotate(0deg);
+            }
+
+            50% {
+                opacity: 0.85;
+                transform: scale(1.3) rotate(25deg);
+            }
+        }
+
+        /* Slowly falling golden sparkles */
+
+        .falling-sparkle {
+            position: absolute;
+            top: -40px;
+            color: #d4a64e;
+            opacity: 0;
+            font-size: 18px;
+            pointer-events: none;
+            text-shadow: 0 0 10px rgba(212, 166, 78, 0.55);
+            animation: goldenFall linear infinite;
+            will-change: transform, opacity;
+        }
+
+        @keyframes goldenFall {
+
+            0% {
+                transform: translate3d(0, -40px, 0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.75;
+            }
+
+            50% {
+                transform: translate3d(35px, 50vh, 0) rotate(180deg);
+                opacity: 0.65;
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translate3d(-25px, 110vh, 0) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Mobile responsive */
 
         @media (max-width: 480px) {
+
             .login-card {
-                padding: 35px 23px;
+                padding: 32px 23px;
             }
 
             h1 {
-                font-size: 27px;
+                font-size: 29px;
+            }
+        }
+
+        /* Respect reduced-motion preferences */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .gift,
+            .sparkle,
+            .falling-sparkle {
+                animation: none;
+            }
+
+            .sparkle {
+                opacity: 0.35;
+            }
+
+            .falling-sparkle {
+                display: none;
             }
         }
     </style>
@@ -189,26 +389,37 @@
 
 <body>
 
-    <div class="sparkle sparkle-one">✦</div>
-    <div class="sparkle sparkle-two">✧</div>
+    <!-- Background animation containers -->
+
+    <div id="sparkleContainer" aria-hidden="true"></div>
+    <div id="fallingSparkleContainer" aria-hidden="true"></div>
 
     <main class="login-card">
 
-        <div class="top-label">A PRIVATE CELEBRATION</div>
+        <div class="top-label">A LITTLE SURPRISE, JUST FOR YOU</div>
 
-        <div class="cake">🎂</div>
+        <div class="gift-container">
+            <div class="gift">
+                <div class="ribbon-left"></div>
+                <div class="ribbon-right"></div>
+                <div class="gift-bow-center"></div>
+                <div class="gift-lid"></div>
+                <div class="gift-box"></div>
+            </div>
+        </div>
 
-        <h1>Welcome!</h1>
+        <h1>Something Special Awaits!</h1>
 
         <p class="description">
-            Someone has created something special just for you.
-            Login to unlock your private birthday memories. ✨
+            Someone has wrapped up a little happiness just for you.
+            Enter your details and unwrap your birthday memories🎀
         </p>
 
         <form id="loginForm">
 
             <div class="input-group">
                 <label for="email">Email Address</label>
+
                 <input type="email" id="email" placeholder="Enter your email" autocomplete="username" required>
             </div>
 
@@ -216,17 +427,19 @@
                 <label for="password">Password</label>
 
                 <div class="password-wrapper">
+
                     <input type="password" id="password" placeholder="Enter your password"
                         autocomplete="current-password" required>
 
                     <button type="button" class="toggle-password" id="togglePassword">
                         Show
                     </button>
+
                 </div>
             </div>
 
             <button type="submit" class="login-button" id="loginButton">
-                Unlock My Birthday Website ✨
+                Unwrap My Birthday Surprise🎁
             </button>
 
         </form>
@@ -234,44 +447,152 @@
         <p id="message" role="status" aria-live="polite"></p>
 
         <div class="footer">
-            Made with care, just for you 🤍
+            A little gift, made with care just for you🤍
         </div>
 
     </main>
+
+    <!-- Supabase scripts -->
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./supabase.js"></script>
 
     <script>
-        const loginForm = document.getElementById("loginForm");
-        const message = document.getElementById("message");
-        const loginButton = document.getElementById("loginButton");
-        const passwordInput = document.getElementById("password");
-        const togglePassword = document.getElementById("togglePassword");
 
-        // Show or hide password
+        /* =====================================
+           1. TWINKLING STARS
+        ===================================== */
+
+        const sparkleContainer =
+            document.getElementById("sparkleContainer");
+
+        const starSymbols = ["✦", "✧", "⋆", "✴", "✳"];
+
+        const STAR_COUNT = 35;
+
+        for (let i = 0; i < STAR_COUNT; i++) {
+
+            const star = document.createElement("span");
+
+            star.className = "sparkle";
+
+            star.textContent =
+                starSymbols[Math.floor(Math.random() * starSymbols.length)];
+
+            star.style.left = Math.random() * 100 + "%";
+            star.style.top = Math.random() * 100 + "%";
+
+            star.style.fontSize =
+                (10 + Math.random() * 19) + "px";
+
+            star.style.animationDelay =
+                Math.random() * 4 + "s";
+
+            star.style.animationDuration =
+                (2 + Math.random() * 3) + "s";
+
+            sparkleContainer.appendChild(star);
+        }
+
+
+        /* =====================================
+           2. FALLING GOLDEN SPARKLES
+        ===================================== */
+
+        const fallingSparkleContainer =
+            document.getElementById("fallingSparkleContainer");
+
+        const fallingSymbols = ["✧", "✦", "⋆", "✨"];
+
+        const FALLING_SPARKLE_COUNT = 8;
+
+        for (let i = 0; i < FALLING_SPARKLE_COUNT; i++) {
+
+            const fallingStar = document.createElement("span");
+
+            fallingStar.className = "falling-sparkle";
+
+            fallingStar.textContent =
+                fallingSymbols[
+                Math.floor(Math.random() * fallingSymbols.length)
+                ];
+
+            fallingStar.style.left =
+                Math.random() * 100 + "%";
+
+            fallingStar.style.fontSize =
+                (12 + Math.random() * 14) + "px";
+
+            fallingStar.style.animationDuration =
+                (12 + Math.random() * 10) + "s";
+
+            fallingStar.style.animationDelay =
+                -(Math.random() * 20) + "s";
+
+            fallingSparkleContainer.appendChild(fallingStar);
+        }
+
+
+        /* =====================================
+           3. PASSWORD VISIBILITY
+        ===================================== */
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+        const message =
+            document.getElementById("message");
+
+        const loginButton =
+            document.getElementById("loginButton");
+
+        const passwordInput =
+            document.getElementById("password");
+
+        const togglePassword =
+            document.getElementById("togglePassword");
+
         togglePassword.addEventListener("click", function () {
-            const isPassword = passwordInput.type === "password";
 
-            passwordInput.type = isPassword ? "text" : "password";
-            togglePassword.textContent = isPassword ? "Hide" : "Show";
+            const isPassword =
+                passwordInput.type === "password";
+
+            passwordInput.type =
+                isPassword ? "text" : "password";
+
+            togglePassword.textContent =
+                isPassword ? "Hide" : "Show";
         });
 
-        // Customer login
+
+        /* =====================================
+           4. CUSTOMER LOGIN
+        ===================================== */
+
         loginForm.addEventListener("submit", async function (event) {
+
             event.preventDefault();
 
-            const email = document.getElementById("email").value.trim();
-            const password = passwordInput.value;
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                passwordInput.value;
 
             message.style.color = "#887780";
-            message.textContent = "Checking your details...";
+
+            message.textContent =
+                "Checking your details...";
 
             loginButton.disabled = true;
-            loginButton.textContent = "Please wait...";
+
+            loginButton.textContent =
+                "Please wait...";
 
             try {
+
                 if (!window.supabaseClient) {
+
                     throw new Error(
                         "Supabase client not loaded. Please refresh the page."
                     );
@@ -279,8 +600,10 @@
 
                 const { data, error } =
                     await window.supabaseClient.auth.signInWithPassword({
+
                         email: email,
                         password: password
+
                     });
 
                 if (error) {
@@ -288,21 +611,28 @@
                 }
 
                 message.style.color = "#39845b";
+
                 message.textContent =
                     "Login successful! Opening your birthday website... 🎉";
 
                 window.location.replace("./index.html");
 
             } catch (error) {
+
                 console.error("Login error:", error);
 
                 message.style.color = "#c04b58";
-                message.textContent = "Login failed: " + error.message;
+
+                message.textContent =
+                    "Login failed: " + error.message;
 
                 loginButton.disabled = false;
-                loginButton.textContent = "Unlock My Birthday Website ✨";
+
+                loginButton.textContent =
+                    "Unwrap My Birthday Surprise🎁";
             }
         });
+
     </script>
 
 </body>
